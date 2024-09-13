@@ -1,17 +1,17 @@
 package com.dzen;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.provider.Arguments;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.stream.Stream;
 
 public class Utils {
     static String URL = "https://hootsuite.com/";
@@ -56,5 +56,13 @@ public class Utils {
             }
             catch (org.openqa.selenium.ElementNotInteractableException ignored) {}
         }
+    }
+
+    public static Stream<Arguments> generateData() {
+        return Stream.of(
+                Arguments.of(initChromeDriver()),
+                Arguments.of(initFirefoxDriver())
+//                Arguments.of(initSafariDriver())
+        );
     }
 }
